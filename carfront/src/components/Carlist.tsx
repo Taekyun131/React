@@ -58,7 +58,13 @@ function Carlist(){
                 <button
                 // onClick={() => alert(params.row._links.car.href)}
                     // 삭제버튼에서 mutate를 호출
-                    onClick={() => mutate(params.row._links.car.href)}
+                    onClick={() => {
+                        if (window.confirm(
+                            `Are you sure want to delete ${params.row.brand} ${params.row.model} ?`)) {
+                                mutate(params.row._links.car.href)
+                        }
+                    }
+                }
                     >Delete
                 </button>
             ),
