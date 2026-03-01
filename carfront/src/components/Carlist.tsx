@@ -5,8 +5,16 @@ import { getCars, deleteCar } from "../api/carapi";
 import { DataGrid, GridColDef, GridCellParams } from '@mui/x-data-grid'
 import  Snackbar  from "@mui/material/Snackbar";
 import { useState } from "react";
+import AddCar from "./AddCar";
+import EditCar from "./EditCar";
+import { Stack } from "@mui/material";
+import Button from "@mui/material/Button";
 
-function Carlist(){
+type CarlistProps = {
+    logOut?: () => void;
+}
+
+function Carlist({ logOut }: CarlistProps){
     // const getCars = async (): Promise<CarResponse[]> => {
     //     const response = await axios.get("http://localhost:8081/api/cars");
     //     return response.data._embedded.cars;
@@ -46,6 +54,17 @@ function Carlist(){
         {field: "registrationNumber", headerName: "Reg.nr.", width:150},
         {field: "modelYear", headerName: "ModelYear", width: 150},
         {field: "price", headerName: "Price", width: 150},
+        // 수정버튼 추가
+        {
+            field: 'edit',
+            headerName: '',
+            width: 90,
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true,
+            renderCell: (params: GridCellParams) => 
+                <EditCar cardata={params.row} />
+        },
         // 삭제버튼 추가
         {
             field: "delete",
@@ -95,10 +114,20 @@ function Carlist(){
             //     </tbody>
             // </table>
             <>
+                {/* <AddCar /> */}
+                <Stack 
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                >
+                    <AddCar />
+                    <Button onClick={logOut}>Log out</Button>
+                </Stack>
                 <DataGrid
                     rows={data}
                     columns={columns}
                     getRowId={row => row._links.self.href}
+                    showToolbar
                 />
                 <Snackbar
                     open={open}
