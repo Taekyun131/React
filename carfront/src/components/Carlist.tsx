@@ -9,6 +9,8 @@ import AddCar from "./AddCar";
 import EditCar from "./EditCar";
 import { Stack } from "@mui/material";
 import Button from "@mui/material/Button";
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 type CarlistProps = {
     logOut?: () => void;
@@ -74,7 +76,8 @@ function Carlist({ logOut }: CarlistProps){
             filterable: false,
             disableColumnMenu: true,
             renderCell: (params: GridCellParams) => (
-                <button
+                // <button
+                <IconButton aria-label="delete" size="small"
                 // onClick={() => alert(params.row._links.car.href)}
                     // 삭제버튼에서 mutate를 호출
                     onClick={() => {
@@ -84,8 +87,8 @@ function Carlist({ logOut }: CarlistProps){
                         }
                     }
                 }
-                    >Delete
-                </button>
+                    ><DeleteIcon fontSize="small"/>
+                </IconButton>
             ),
         }
     ]

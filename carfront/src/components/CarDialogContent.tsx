@@ -1,5 +1,7 @@
 import { Car } from "../type";
 import  DialogContent  from "@mui/material/DialogContent";
+import { TextField } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 
 type DialogFormProps = {
@@ -11,18 +13,32 @@ function CarDialogContent({ car, handleChange }: DialogFormProps) {
     return (
         <>
             <DialogContent>
-                <input placeholder="Brand" name="brand" 
-                    value={car.brand} onChange={handleChange}/>
+                {/* <input placeholder="Brand" name="brand" 
+                    value={car.brand} onChange={handleChange}/><br/>
                 <input placeholder="Model" name="model"
-                    value={car.model} onChange={handleChange} />
+                    value={car.model} onChange={handleChange} /><br/>
                 <input placeholder="Color" name="color"
-                    value={car.color} onChange={handleChange} />
+                    value={car.color} onChange={handleChange} /><br/>
                 <input placeholder="Year" name="modelYear"
-                    value={car.modelYear} onChange={handleChange} />
+                    value={car.modelYear} onChange={handleChange} /><br/>
                 <input placeholder="Reg.nr" name="registrationNumber"
-                    value={car.registrationNumber} onChange={handleChange} />
+                    value={car.registrationNumber} onChange={handleChange} /><br/>
                 <input placeholder="Price" name="price"
-                    value={car.price} onChange={handleChange} />
+                    value={car.price} onChange={handleChange} /><br/> */}
+                <Stack spacing={2} mt={1}>
+                    <TextField label="Brand" name="brand"
+                        value={car.brand} onChange={handleChange}/><br/>
+                    <TextField label="Model" name="model"
+                        value={car.model} onChange={handleChange}/><br/>
+                    <TextField label="Color" name="color"
+                        value={car.color} onChange={handleChange}/><br/>
+                    <TextField label="Year" name="modelYear"
+                        value={car.modelYear} onChange={handleChange}/><br/>
+                    <TextField label="Reg.nr" name="registrationNumber"
+                        value={car.registrationNumber} onChange={handleChange}/><br/>
+                    <TextField label="Price" name="price"
+                        value={car.price} onChange={handleChange}/><br/>
+                </Stack>
             </DialogContent>
         </>
     );
